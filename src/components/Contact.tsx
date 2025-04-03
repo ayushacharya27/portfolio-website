@@ -1,7 +1,62 @@
+import { useState } from "react";
 import { motion } from 'framer-motion';
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/outline';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleEmailClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const email = 'ayush.acharya2027@gmail.com';
+    const subject = 'Portfolio Inquiry';
+    const body = 'Hi Ayush,\n\nI came across your portfolio and wanted to connect regarding ';
+    
+    // Create the mailto URL
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open the email client
+    window.location.href = mailtoUrl;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+    
+    try {
+      const response = await fetch("https://formspree.io/f/xdkewzqk", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", message: "" }); // Reset form
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="section-padding">
       <div className="container-width">
@@ -31,15 +86,13 @@ const Contact = () => {
                 <EnvelopeIcon className="h-6 w-6 text-secondary flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
-                  <div className="flex items-center gap-4">
-                    <EnvelopeIcon className="w-6 h-6 text-secondary" />
-                    <a
-                      href="mailto:ayush.acharya2027@gmail.com?subject=Portfolio%20Inquiry&body=Hi%20Ayush%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20wanted%20to%20connect%20regarding%20"
-                      className="text-textPrimary hover:text-secondary transition-colors"
-                    >
-                      ayush.acharya2027@gmail.com
-                    </a>
-                  </div>
+                  <a
+                    href="#"
+                    onClick={handleEmailClick}
+                    className="text-textPrimary hover:text-secondary transition-colors"
+                  >
+                    ayush.acharya2027@gmail.com
+                  </a>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -75,7 +128,10 @@ const Contact = () => {
             className="bg-tertiary p-8 rounded-lg"
           >
             <h3 className="text-2xl font-bold mb-6">Send a Message</h3>
-            <form className="space-y-4">
+            <form 
+              className="space-y-4" 
+              onSubmit={handleSubmit}
+            >
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-1">
                   Name
@@ -84,6 +140,9 @@ const Contact = () => {
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 bg-primary border border-textSecondary/20 rounded-lg focus:outline-none focus:border-secondary"
                   placeholder="Your name"
                 />
@@ -96,6 +155,9 @@ const Contact = () => {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 bg-primary border border-textSecondary/20 rounded-lg focus:outline-none focus:border-secondary"
                   placeholder="your.email@example.com"
                 />
@@ -108,12 +170,35 @@ const Contact = () => {
                   id="message"
                   name="message"
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-2 bg-primary border border-textSecondary/20 rounded-lg focus:outline-none focus:border-secondary"
                   placeholder="Your message"
                 ></textarea>
               </div>
-              <button type="submit" className="btn-primary w-full">
-                Send Message
+              
+              {/* Honeypot field to prevent spam */}
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
+              
+              {submitStatus === "success" && (
+                <div className="p-3 bg-green-500/20 text-green-500 rounded-lg">
+                  Message sent successfully! Thank you for reaching out.
+                </div>
+              )}
+              
+              {submitStatus === "error" && (
+                <div className="p-3 bg-red-500/20 text-red-500 rounded-lg">
+                  Failed to send message. Please try again or use the email link above.
+                </div>
+              )}
+              
+              <button 
+                type="submit" 
+                className="btn-primary w-full"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
             </form>
           </motion.div>
