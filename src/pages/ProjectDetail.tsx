@@ -9,13 +9,6 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === id);
 
-  // Example project images - you can replace these with actual project images
-  const projectImages = [
-    { src: project?.image || '', alt: 'Main view' },
-    { src: '/project-detail-1.jpg', alt: 'Feature showcase' },
-    { src: '/project-detail-2.jpg', alt: 'Technical implementation' },
-  ];
-
   if (!project) {
     return (
       <div className="min-h-screen section-padding pt-24">
@@ -105,7 +98,7 @@ const ProjectDetail = () => {
                   Project Gallery
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {projectImages.map((image, index) => (
+                  {project.galleryImages.map((image, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
@@ -129,27 +122,20 @@ const ProjectDetail = () => {
               {/* Project Details */}
               <div className="prose prose-invert max-w-none">
                 <h2>Project Overview</h2>
-                <p>
-                  {project.description}
-                </p>
+                <p>{project.overview}</p>
 
                 <h2>Key Features</h2>
                 <ul>
-                  <li>Feature 1 description</li>
-                  <li>Feature 2 description</li>
-                  <li>Feature 3 description</li>
+                  {project.keyFeatures.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
                 </ul>
 
                 <h2>Technical Implementation</h2>
-                <p>
-                  Detailed technical explanation of how the project was implemented,
-                  including architecture decisions, challenges faced, and solutions.
-                </p>
+                <p>{project.technicalImplementation}</p>
 
                 <h2>Results & Impact</h2>
-                <p>
-                  Description of the project's outcomes, performance metrics, and impact.
-                </p>
+                <p>{project.resultsAndImpact}</p>
               </div>
             </div>
 
@@ -171,53 +157,34 @@ const ProjectDetail = () => {
                           <ClockIcon className="w-4 h-4" />
                           <span>Latest Update</span>
                         </div>
-                        <p className="text-textPrimary">Added real-time data visualization dashboard</p>
+                        <p className="text-textPrimary">{project.currentUpdates.latest.title}</p>
+                        <span className="text-sm text-textSecondary">{project.currentUpdates.latest.date}</span>
                       </div>
                     </div>
 
                     {/* Recent Updates */}
                     <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <CheckCircleIcon className="w-5 h-5 text-secondary mt-1" />
-                        <div>
-                          <p className="text-textPrimary">Implemented new security features</p>
-                          <span className="text-sm text-textSecondary">2 days ago</span>
+                      {project.currentUpdates.recent.map((update, index) => (
+                        <div key={index} className="flex items-start gap-3">
+                          <CheckCircleIcon className="w-5 h-5 text-secondary mt-1" />
+                          <div>
+                            <p className="text-textPrimary">{update.title}</p>
+                            <span className="text-sm text-textSecondary">{update.date}</span>
+                          </div>
                         </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircleIcon className="w-5 h-5 text-secondary mt-1" />
-                        <div>
-                          <p className="text-textPrimary">Optimized performance by 40%</p>
-                          <span className="text-sm text-textSecondary">1 week ago</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3">
-                        <CheckCircleIcon className="w-5 h-5 text-secondary mt-1" />
-                        <div>
-                          <p className="text-textPrimary">Added mobile responsiveness</p>
-                          <span className="text-sm text-textSecondary">2 weeks ago</span>
-                        </div>
-                      </div>
+                      ))}
                     </div>
 
                     {/* Coming Soon */}
                     <div className="pt-4 border-t border-primary/20">
                       <h3 className="text-lg font-medium text-textPrimary mb-3">Coming Soon</h3>
                       <ul className="space-y-2">
-                        <li className="flex items-center gap-2 text-textSecondary">
-                          <span className="w-2 h-2 bg-secondary rounded-full" />
-                          AI-powered analytics
-                        </li>
-                        <li className="flex items-center gap-2 text-textSecondary">
-                          <span className="w-2 h-2 bg-secondary rounded-full" />
-                          Cloud integration
-                        </li>
-                        <li className="flex items-center gap-2 text-textSecondary">
-                          <span className="w-2 h-2 bg-secondary rounded-full" />
-                          Mobile app version
-                        </li>
+                        {project.currentUpdates.comingSoon.map((item, index) => (
+                          <li key={index} className="flex items-center gap-2 text-textSecondary">
+                            <span className="w-2 h-2 bg-secondary rounded-full" />
+                            {item}
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   </div>
