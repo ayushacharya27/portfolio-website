@@ -510,9 +510,12 @@ const Projects = () => {
                   className="relative w-full h-[300px] overflow-hidden rounded-lg"
                 >
                   <img
-                    src={project.image}
+                    src={project.image.replace(/\.(png|jpg)$/, '.webp')}
                     alt={project.title}
                     loading="lazy"
+                    decoding="async"
+                    width={400}
+                    height={300}
                     className="w-full h-full object-contain bg-tertiary transition-transform duration-300 group-hover:scale-110"
                   />
                   {/* Overlay with Links */}
