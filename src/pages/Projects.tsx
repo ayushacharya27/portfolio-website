@@ -509,15 +509,25 @@ const Projects = () => {
                   transition={{ duration: 0.5 }}
                   className="relative w-full h-[300px] overflow-hidden rounded-lg"
                 >
-                  <img
-                    src={project.image.replace(/\.(png|jpg)$/, '.webp')}
-                    alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    width={400}
-                    height={300}
-                    className="w-full h-full object-contain bg-tertiary transition-transform duration-300 group-hover:scale-110"
-                  />
+                  <picture>
+                    <source
+                      srcSet={project.image.replace(/\.(png|jpg)$/, '.avif')}
+                      type="image/avif"
+                    />
+                    <source
+                      srcSet={project.image.replace(/\.(png|jpg)$/, '.webp')}
+                      type="image/webp"
+                    />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-contain bg-tertiary transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </picture>
                   {/* Overlay with Links */}
                   <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     {project.liveUrl && (
