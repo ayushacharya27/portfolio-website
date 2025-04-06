@@ -512,6 +512,7 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
                     className="w-full h-full object-contain bg-tertiary transition-transform duration-300 group-hover:scale-110"
                   />
                   {/* Overlay with Links */}
