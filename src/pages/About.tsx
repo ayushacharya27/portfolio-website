@@ -96,15 +96,15 @@ const About = () => {
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">First Place - Smart India Hackathon 2023</h4>
+                    <h4 className="font-medium text-textPrimary text-sm md:text-base">First Place - Nexathon</h4>
                     <p className="text-textSecondary text-xs md:text-sm">Developed an innovative IoT solution for smart agriculture</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Best Innovation - TechFest 2023</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Created a sustainable energy management system</p>
+                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Best Innovation - CyberSpectrum 3.0</h4>
+                    <p className="text-textSecondary text-xs md:text-sm">Created a IOT controlled bot having custom server for remote control</p>
                   </div>
                 </li>
               </ul>
@@ -120,15 +120,15 @@ const About = () => {
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Dean's List 2023</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Consistently maintained 9.5+ CGPA</p>
+                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Dean's List 2024</h4>
+                    <p className="text-textSecondary text-xs md:text-sm">Consistently maintained 9.1+ CGPA</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Best Project Award</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Awarded for outstanding final year project</p>
+                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Best Special Team Award</h4>
+                    <p className="text-textSecondary text-xs md:text-sm">Awarded for outstanding performance of my Special Team Dreadnought Robotics</p>
                   </div>
                 </li>
               </ul>
@@ -145,14 +145,14 @@ const About = () => {
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
                     <h4 className="font-medium text-textPrimary text-sm md:text-base">Patent Filed</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Innovative IoT device for smart home automation</p>
+                    <p className="text-textSecondary text-xs md:text-sm">Innovative IoT device for remote control from anywhere</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
                     <h4 className="font-medium text-textPrimary text-sm md:text-base">Research Paper Published</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">IEEE Conference on Emerging Technologies</p>
+                    <p className="text-textSecondary text-xs md:text-sm">IEEE Conference on Autonomonus Vehicles using LSTM Algorithms</p>
                   </div>
                 </li>
               </ul>
@@ -166,17 +166,13 @@ const About = () => {
               </h3>
               <ul className="space-y-3 md:space-y-4">
                 <li className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
-                  <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">AWS Certified Solutions Architect</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Professional level certification</p>
-                  </div>
+                   
                 </li>
                 <li className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-secondary rounded-full mt-2"></div>
                   <div>
-                    <h4 className="font-medium text-textPrimary text-sm md:text-base">Google Cloud Professional</h4>
-                    <p className="text-textSecondary text-xs md:text-sm">Cloud Architecture certification</p>
+                    <h4 className="font-medium text-textPrimary text-sm md:text-base">ZTM (Udemy) Certification</h4>
+                    <p className="text-textSecondary text-xs md:text-sm">Open CV Beginner to Advanced</p>
                   </div>
                 </li>
               </ul>
